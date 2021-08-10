@@ -1,12 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import BalanceBox from './components/BalanceBox'
+import Navbar from './components/Navbar.js'
 
 function App() {
   return (
-    <div className="App">
-      <h1 className='text-red-500'>NINJA</h1>
+    <div className="App bg-gray-900">
+      <Navbar />
+      <BalanceBox />
     </div>
   );
 }
 
-export default App;
+export default App
