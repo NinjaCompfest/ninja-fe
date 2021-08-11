@@ -1,6 +1,7 @@
 import './App.css'
 import BalanceBox from './components/BalanceBox'
 import Navbar from './components/Navbar.js'
+import ProfileBox from './components/ProfileBox'
 
 function App() {
   return (
