@@ -6,7 +6,6 @@ function App() {
   return (
     <div className="App bg-gray-900">
       <Navbar />
-      <BalanceBox />
     </div>
   );
 }

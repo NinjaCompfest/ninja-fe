@@ -2,7 +2,7 @@ import React from 'react'
 import './Navbar.css'
 const Navbar = () => {
     return (
-        <div className='bg-white'>
+        <div className='bg-white bar border border-black'>
             <div className='max-w-6xl mx-auto'>
                 <div className='flex justify-between'>
 
