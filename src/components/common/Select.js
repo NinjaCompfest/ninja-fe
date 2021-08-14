@@ -1,14 +1,16 @@
 import React from "react";
 import "../../styles/Select.css";
 
-const TextInput = ({ label, placeholder, options, onChange }) => {
-  const RenderedOptions = options.map((option) => (
-    <option value={option.value}>{option.name}</option>
+const Input = ({ label, placeholder, options, onChange }) => {
+  const RenderedOptions = options.map((option, index) => (
+    <option key={index} value={option.value}>
+      {option.name}
+    </option>
   ));
 
   return (
     <>
-      <label className="block text-gray-700 text-sm font-bold mb-2" for="type">
+      <label className="block text-gray-700 text-sm font-bold mb-2">
         {label}
       </label>
       <select
@@ -22,4 +24,4 @@ const TextInput = ({ label, placeholder, options, onChange }) => {
   );
 };
 
-export default TextInput;
+export default Input;

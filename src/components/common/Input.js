@@ -1,10 +1,10 @@
 import React from "react";
 import "../../styles/Input.css";
 
-const TextInput = ({ label, type, placeholder, onChange }) => {
+const Input = ({ label, type, placeholder, onChange }) => {
   return (
     <>
-      <label className="block text-gray-700 text-sm font-bold mb-2" for={label}>
+      <label className="block text-gray-700 text-sm font-bold mb-2">
         {label}
       </label>
       <input
@@ -17,4 +17,4 @@ const TextInput = ({ label, type, placeholder, onChange }) => {
   );
 };
 
-export default TextInput;
+export default Input;
