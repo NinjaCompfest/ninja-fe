@@ -3,6 +3,7 @@ import Button from "../common/Button";
 import Input from "../common/Input";
 import Select from "../common/Select";
 import Illustration from "../../assets/images/register.svg";
+import { register } from "../../services/auth.service";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -24,7 +25,11 @@ const Register = () => {
 
   const onUserTypeChange = (val) => {
     setUserType(val);
-    console.log(userType);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    register(fullName, username, password, userType);
   };
 
   return (
@@ -82,7 +87,7 @@ const Register = () => {
 
         <div
           className="flex items-center justify-between"
-          onClick={() => console.log("a")}
+          onClick={(e) => onSubmit(e)}
         >
           <Button
             text="Sign up"

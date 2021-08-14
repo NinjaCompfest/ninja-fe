@@ -1,8 +1,8 @@
 import "./App.css";
-import BalanceBox from "./components/BalanceBox";
-import Navbar from "./components/Navbar.js";
+import BalanceBox from "./components/common/BalanceBox";
+import Navbar from "./components/common/Navbar";
 import Register from "./components/pages/Register";
-import ProfileBox from "./components/ProfileBox";
+import ProfileBox from "./components/common/ProfileBox";
 
 function App() {
   return (

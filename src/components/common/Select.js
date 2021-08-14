@@ -1,5 +1,5 @@
 import React from "react";
-import "./Select.css";
+import "../../styles/Select.css";
 
 const TextInput = ({ label, placeholder, options, onChange }) => {
   const RenderedOptions = options.map((option) => (
