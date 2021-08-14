@@ -1,6 +1,6 @@
 import React from 'react'
 import './Navbar.css'
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <div className='bg-white bar'>
             <div className='max-w-6xl mx-auto'>
@@ -13,7 +13,7 @@ const Navbar = () => {
 
                     {/* secondary nav */}
                     <div className='flex items-center space-x-1'>
-                        <a href="#" className='py-1 px-7 border border-gray-400 rounded hover:bg-black hover:text-white transition duration-300'>Login</a>
+                        <a href='{props.link}' className='py-1 px-7 border border-gray-400 rounded hover:bg-black hover:text-white transition duration-300'>{props.status}</a>
                     </div>
                 </div>
             </div>

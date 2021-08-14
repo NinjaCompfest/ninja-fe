@@ -1,10 +1,14 @@
+import AdminDashboard from './AdminDashboard';
 import './App.css'
-import Navbar from './components/Navbar.js'
+import AdminProfileBox from './components/AdminProfileBox';
+import DonatorDashboard from './DonatorDashboard.jsx'
+import FundriserDashboard from './FundriserDashboard.jsx';
+
 
 function App() {
   return (
     <div className="bg-gray-300 min-h-screen">
-      <Navbar />
+
     </div>
   );
 }
