@@ -1,11 +1,5 @@
-import AdminDashboard from './AdminDashboard';
-import './App.css'
-import AdminProfileBox from './components/AdminProfileBox';
-import DonatePage from './DonatePage';
-import DonatorDashboard from './DonatorDashboard.jsx'
-import FundriserDashboard from './FundriserDashboard.jsx';
-import TopUpPage from './TopUpPage.jsx';
-
+import "./App.css";
+import DonatePage from "./DonatePage";
 
 function App() {
   return (
@@ -15,4 +9,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
