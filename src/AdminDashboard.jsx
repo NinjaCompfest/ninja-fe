@@ -3,6 +3,7 @@ import Navbar from './components/Navbar.js'
 import axios from 'axios'
 import FundrisingBox from './components/FundrisingBox'
 import AdminProfileBox from './components/AdminProfileBox.js'
+import "./components/ProfileBox.css"
 
 class AdminDashboard extends Component {
     state = {

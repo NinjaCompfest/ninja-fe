@@ -2,6 +2,7 @@ import { Component } from "react";
 import Navbar from "./components/Navbar";
 import TopUpAccountInfo from "./components/TopUpAccountInfo";
 import './components/TopUpPage.css'
+import "./components/ProfileBox.css"
 
 class TopUpPage extends Component {
 

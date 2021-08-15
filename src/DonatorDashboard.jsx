@@ -5,6 +5,7 @@ import Navbar from './components/Navbar.js'
 import ProfileBox from './components/ProfileBox'
 import axios from 'axios'
 import HistoryList from './components/HistoryList'
+import "./components/ProfileBox.css"
 
 class DonatorDashboard extends Component {
   state = {

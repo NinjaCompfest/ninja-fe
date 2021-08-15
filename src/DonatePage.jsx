@@ -2,6 +2,7 @@ import { Component } from "react";
 import Navbar from "./components/Navbar";
 import DonateInfo from "./components/DonateInfo";
 import "./components/TopUpPage.css";
+import "./components/ProfileBox.css"
 
 class DonatePage extends Component {
   state = {

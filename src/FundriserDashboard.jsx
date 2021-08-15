@@ -4,6 +4,7 @@ import Navbar from './components/Navbar.js'
 import ProfileBox from './components/ProfileBox'
 import BalanceBoxFundriser from './components/BalanceBoxFundriser'
 import FundrisingBoxFundriser from './components/FundrisingBoxFundriser'
+import "./components/ProfileBox.css"
 
 class FundriserDashboard extends Component {
     
