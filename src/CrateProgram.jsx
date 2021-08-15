@@ -7,6 +7,7 @@ class CrateProgram extends Component {
   state = {
     valueTitle: '',
     valueDescription: '',
+    status: 'Logout'
   };
 
   titleInput(event) {
