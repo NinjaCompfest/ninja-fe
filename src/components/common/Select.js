@@ -16,8 +16,12 @@ const Input = ({ label, placeholder, options, onChange }) => {
       <select
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         placeholder={placeholder}
+        defaultValue={"DEFAULT"}
         onChange={(e) => onChange(e.target.value)}
       >
+        <option value="DEFAULT" disabled>
+          Select user type
+        </option>
         {RenderedOptions}
       </select>
     </>

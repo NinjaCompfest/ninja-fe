@@ -1,5 +1,5 @@
 export default {
-  host: "http://127.0.0.1:8000",
+  host: "http://b623e625-f060-478f-8c6f-fb158bb2a0a1.mock.pstmn.io",
   login: "/login",
   register: "/register",
 };
