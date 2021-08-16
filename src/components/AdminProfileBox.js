@@ -12,13 +12,13 @@ const AdminProfileBox = (props) => {
                         <p className=''>Fullname :</p>
                     </div>
                     <div className='profile-content'>
-                        <p className='my-3'>{props.uname}</p>
-                        <p>{props.fname}</p>
+                        <p className='my-3'>{props.data.uname}</p>
+                        <p>{props.data.fullname}</p>
                     </div>
                 </div>
                 <div className='flex justify-end'>
                     <a href='#' className=' text-4xl my-3'><FaCheckCircle/></a>
-                    <a href='#' className='mx-5 text-4xl my-3'><FaTimesCircle/></a>
+                    <button className='mx-5 text-4xl my-3 remove' onClick={() => props.remove(props.data.id)}><FaTimesCircle/></button>
                 </div>
             </div>
         </div>

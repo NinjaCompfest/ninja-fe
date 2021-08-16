@@ -8,8 +8,9 @@ import AdminWithdraw from './components/AdminWithdraw.js'
 
 class AdminDashboard extends Component {
     state = {
-        post: [],
+        programs: [],
         auth: [],
+        fundriser: [],
         withdraw: [],
         link: "#",
         status: 'Logout',
@@ -17,29 +18,44 @@ class AdminDashboard extends Component {
         username: 'uname',
         fullname: 'fname',
       }
-    
-      // jangan lupa buat API histori, ini pake satu aja.
-      componentDidMount(){
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+
+      getPostAPI = () => {
+        axios.get('http://localhost:3000/programs')
         .then((result) => {
           this.setState({
-            post: result.data
+            programs: result.data
           })
         })
 
-        axios.get('https://jsonplaceholder.typicode.com/users')
-        .then((res) => {
+        axios.get('http://localhost:3000/fundrisers')
+        .then((result) => {
           this.setState({
-            auth: res.data
-          })
-        }) 
-        
-        axios.get('https://jsonplaceholder.typicode.com/users')
-        .then((res) => {
-          this.setState({
-            withdraw: res.data
+            fundriser: result.data
           })
         })
+
+        axios.get('http://localhost:3000/withdraws')
+        .then((result) => {
+          this.setState({
+            withdraw: result.data
+          })
+        })
+      }
+      
+      rejectAccount = (data) => {
+        axios.delete(`http://localhost:3000/fundrisers/${data}`).then(() => {
+          this.getPostAPI()
+        })
+      }
+
+      rejectWithdraw = (data) => {
+        axios.delete(`http://localhost:3000/withdraws/${data}`).then(() => {
+          this.getPostAPI()
+        })
+      }
+    
+      componentDidMount(){
+        this.getPostAPI()
       }
       render(){
         return (
@@ -57,22 +73,22 @@ class AdminDashboard extends Component {
                 </div>
                 <div className='col-span-4'>
                     {
-                        this.state.post.map(post => {
-                        return <FundrisingBox key={post.id} title={post.title} desc={post.body} />
+                        this.state.programs.map(programs => {
+                        return <FundrisingBox key={programs.id} title={programs.title} desc={programs.description} />
                         })
                     }
                 </div>
                 <div className='col-span-2'>
                     {
-                    this.state.auth.map(auth => {
-                        return <AdminProfileBox key={auth.id} uname={auth.username} fname={auth.name} />
+                    this.state.fundriser.map(fundriser => {
+                        return <AdminProfileBox key={fundriser.id} data={fundriser} remove={this.rejectAccount}/>
                     })
                     }
                 </div>
                 <div className='col-span-2'>
                     {
-                    this.state.auth.map(withdraw => {
-                        return <AdminWithdraw key={withdraw.id} amount={withdraw.address.zipcode} fname={withdraw.name} />
+                    this.state.withdraw.map(withdraw => {
+                        return <AdminWithdraw key={withdraw.id} data={withdraw} remove={this.rejectWithdraw} />
                     })
                     }
                 </div>
