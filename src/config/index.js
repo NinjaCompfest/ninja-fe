@@ -1,5 +1,7 @@
-export default {
-  host: "http://b623e625-f060-478f-8c6f-fb158bb2a0a1.mock.pstmn.io",
+const url = {
+  host: "http://localhost:8000",
   login: "/login",
   register: "/register",
 };
+
+export default url;

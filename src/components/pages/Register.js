@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import Button from "../common/Button";
 import Input from "../common/Input";
 import Navbar from "../common/Navbar";
@@ -13,28 +13,25 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("");
   const [validation, setValidation] = useState("*required");
+  const history = useHistory();
 
-  const onFullNameChange = (val) => {
+  const handleFullNameChange = (val) => {
     setFullName(val);
-    console.log(`Fullname: ${val}`);
   };
 
-  const onUsernameChange = (val) => {
+  const handleUsernameChange = (val) => {
     setUsername(val);
-    console.log(`Username: ${val}`);
   };
 
-  const onPasswordChange = (val) => {
+  const handlePasswordChange = (val) => {
     setPassword(val);
-    console.log(`Password: ${val}`);
   };
 
-  const onUserTypeChange = (val) => {
+  const handleUserTypeChange = (val) => {
     setUserType(val);
-    console.log(`Usertype: ${val}`);
   };
 
-  const validate = () => {
+  const handleSubmit = () => {
     if (fullName && username && password && userType) {
       setValidation("");
     } else {
@@ -42,11 +39,18 @@ const Register = () => {
     }
   };
 
-  const onSubmit = () => {
-    validate();
-    console.log(validation);
-    register(fullName, username, password, userType);
-  };
+  useEffect(() => {
+    if (validation === "") {
+      register(fullName, username, password, userType)
+        .then((res) => {
+          if (res.status === 201) {
+            console.log(res);
+            history.push("/login");
+          }
+        })
+        .catch((err) => setValidation(err.message));
+    }
+  }, [validation, fullName, username, password, userType]);
 
   return (
     <>
@@ -66,7 +70,7 @@ const Register = () => {
               label="Full name"
               type="text"
               placeholder="Enter full name"
-              onChange={onFullNameChange}
+              onChange={handleFullNameChange}
             />
           </div>
           <div className="mb-4">
@@ -74,7 +78,7 @@ const Register = () => {
               label="Username"
               type="text"
               placeholder="Enter username"
-              onChange={onUsernameChange}
+              onChange={handleUsernameChange}
             />
           </div>
           <div className="mb-4">
@@ -82,7 +86,7 @@ const Register = () => {
               label="Password"
               type="password"
               placeholder="***********"
-              onChange={onPasswordChange}
+              onChange={handlePasswordChange}
             />
           </div>
           <div className="mb-4">
@@ -92,19 +96,22 @@ const Register = () => {
               options={[
                 {
                   name: "Donor",
-                  value: "donor",
+                  value: "DONOR",
                 },
                 {
                   name: "Fundraiser",
-                  value: "fundraiser",
+                  value: "FUNDRAISER",
                 },
               ]}
-              onChange={onUserTypeChange}
+              onChange={handleUserTypeChange}
             />
             <p className="text-red-500 text-xs italic">{validation}</p>
           </div>
 
-          <div className="flex items-center justify-between" onClick={onSubmit}>
+          <div
+            className="flex items-center justify-between"
+            onClick={handleSubmit}
+          >
             <Button
               text="Sign up"
               backgroundColor="blue-500"

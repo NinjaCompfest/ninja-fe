@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "full_name": "Tony Stark",
+      "type": "DONOR",
+      "username": "ironman",
+      "password": "secret",
+      "id": "R1ISLbe"
+    },
+    {
+      "full_name": "Steve Rogers",
+      "type": "DONOR",
+      "username": "captain",
+      "password": "secret",
+      "id": "eCIEJVc"
+    }
+  ]
+}
