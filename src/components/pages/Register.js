@@ -44,13 +44,12 @@ const Register = () => {
       register(fullName, username, password, userType)
         .then((res) => {
           if (res.status === 201) {
-            console.log(res);
             history.push("/login");
           }
         })
         .catch((err) => setValidation(err.message));
     }
-  }, [validation, fullName, username, password, userType]);
+  }, [validation, fullName, username, password, userType, history]);
 
   return (
     <>

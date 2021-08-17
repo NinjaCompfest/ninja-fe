@@ -1,6 +1,5 @@
 import axios from "axios";
 import config from "../config";
-import { useHistory } from "react-router-dom";
 
 const API_URL = config.host;
 
