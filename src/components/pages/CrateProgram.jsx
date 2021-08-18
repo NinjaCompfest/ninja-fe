@@ -1,20 +1,20 @@
 import { Component } from "react";
-import Navbar from "./components/Navbar";
-import "./components/TopUpPage.css";
-import "./components/ProfileBox.css"
+import Navbar from "../common/Navbar";
+import "../../styles/TopUpPage.css";
+import "../../styles/ProfileBox.css";
 
 class CrateProgram extends Component {
   state = {
-    valueTitle: '',
-    valueDescription: '',
-    status: 'Logout'
+    valueTitle: "",
+    valueDescription: "",
+    status: "Logout",
   };
 
   titleInput(event) {
     const inputValue = event.target.value;
     this.setState({ valueTitle: inputValue });
   }
-  
+
   descriptionInput(event) {
     const inputValue = event.target.value;
     this.setState({ valueDescription: inputValue });

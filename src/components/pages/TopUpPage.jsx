@@ -1,18 +1,17 @@
 import { Component } from "react";
-import Navbar from "./components/Navbar";
-import "./components/TopUpPage.css";
-import "./components/ProfileBox.css"
-import WithdrawInfo from './components/WithdrawInfo'
+import Navbar from "../common/Navbar";
+import TopUpAccountInfo from "../common/TopUpAccountInfo";
+import "../../styles/TopUpPage.css";
+import "../../styles/ProfileBox.css";
 
-class Withdraw extends Component {
+class TopUpPage extends Component {
   state = {
     value: 0,
     post: [],
     link: "#",
     status: "Logout",
     fullname: "testing",
-    donateGathered: "00000",
-    title: "Butuh Bantuan! Bayi Ojek Online Berjuang di NICU!",
+    balance: "00000",
   };
 
   ammountInput(event) {
@@ -32,15 +31,15 @@ class Withdraw extends Component {
           <div className="container max-w-xl">
             <div className="grid grid-cols-3 gap-4 self-center p-10 max-h-full">
               <div className="col-span-3 text-center text-2xl font-bold">
-                Withdraw
+                Top Up
               </div>
               <div className="col-span-3 p-5 px-10">
-                <WithdrawInfo
-                  title={this.state.title}
-                  donateGathered={this.state.donateGathered}
+                <TopUpAccountInfo
+                  fullname={this.state.fullname}
+                  balance={this.state.balance}
                 />
               </div>
-              <div className="col-span-3 px-10">Withdraw Amount</div>
+              <div className="col-span-3 px-10">Top Up Amount</div>
               <div className="col-span-3 px-10">
                 <input
                   className="min-w-full bg-gray-300 input-box px-10"
@@ -103,7 +102,7 @@ class Withdraw extends Component {
               <div className="col-span-3 px-10 mt-10">
                 <div className="grid grid-cols-2 gap-8 self-center max-h-full">
                   <a
-                    href="/"
+                    href="#"
                     className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
                   >
                     Cancel
@@ -121,4 +120,4 @@ class Withdraw extends Component {
   }
 }
 
-export default Withdraw;
+export default TopUpPage;
