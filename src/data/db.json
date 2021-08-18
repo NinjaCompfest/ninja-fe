@@ -105,6 +105,13 @@
       "username": "captain",
       "password": "secret",
       "id": "eCIEJVc"
+    },
+    {
+      "full_name": "Test",
+      "username": "Test",
+      "password": "secret",
+      "type": "DONOR",
+      "id": "hGmekBg"
     }
   ],
   "history": [
