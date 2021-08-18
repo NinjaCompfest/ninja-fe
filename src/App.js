@@ -4,6 +4,7 @@ import "./App.css";
 import Register from "./components/pages/Register";
 import AdminDashboard from "./components/pages/AdminDashboard";
 import Login from "./components/pages/Login";
+import ProgramDetail from "./components/pages/ProgramDetail";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
             <Login />
           </Route>
         </Switch>
+        <Route exact path="/programs/:id" component={ProgramDetail} />
       </Router>
     </div>
   );
