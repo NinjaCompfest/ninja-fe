@@ -93,34 +93,18 @@
   ],
   "users": [
     {
-      "id": 1,
-      "uname": "Leopoldo_Corkery",
-      "fullname": "Mrs. Dennis Schulist",
-      "balance": 0
+      "full_name": "Tony Stark",
+      "type": "DONOR",
+      "username": "ironman",
+      "password": "secret",
+      "id": "R1ISLbe"
     },
     {
-      "id": 2,
-      "uname": "Elwyn.Skiles",
-      "fullname": "Kurtis Weissnat",
-      "balance": 0
-    },
-    {
-      "id": 3,
-      "uname": "Maxime_Nienow",
-      "fullname": "Nicholas Runolfsdottir V",
-      "balance": 0
-    },
-    {
-      "id": 4,
-      "uname": "Delphine",
-      "fullname": "Glenna Reichert",
-      "balance": 0
-    },
-    {
-      "id": 5,
-      "uname": "Moriah.Stanton",
-      "fullname": "Clementina DuBuque",
-      "balance": 0
+      "full_name": "Steve Rogers",
+      "type": "DONOR",
+      "username": "captain",
+      "password": "secret",
+      "id": "eCIEJVc"
     }
   ],
   "history": [
