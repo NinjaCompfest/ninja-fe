@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Navbar from "../common//Navbar.js";
+import Navbar from "../common//Navbar";
 import axios from "axios";
 import FundrisingBox from "../common/FundrisingBox";
-import AdminProfileBox from "../common/AdminProfileBox.js";
+import AdminProfileBox from "../common/AdminProfileBox";
 import "../../styles/ProfileBox.css";
-import AdminWithdraw from "../common/AdminWithdraw.js";
+import AdminWithdraw from "../common/AdminWithdraw";
 
 class AdminDashboard extends Component {
   state = {
@@ -20,35 +20,45 @@ class AdminDashboard extends Component {
   };
 
   getPostAPI = () => {
-    axios.get("http://localhost:3000/programs").then((result) => {
-      this.setState({
-        programs: result.data,
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/programs`)
+      .then((result) => {
+        this.setState({
+          programs: result.data,
+        });
       });
-    });
 
-    axios.get("http://localhost:3000/fundrisers").then((result) => {
-      this.setState({
-        fundriser: result.data,
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/fundrisers`)
+      .then((result) => {
+        this.setState({
+          fundriser: result.data,
+        });
       });
-    });
 
-    axios.get("http://localhost:3000/withdraws").then((result) => {
-      this.setState({
-        withdraw: result.data,
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/withdraws`)
+      .then((result) => {
+        this.setState({
+          withdraw: result.data,
+        });
       });
-    });
   };
 
   rejectAccount = (data) => {
-    axios.delete(`http://localhost:3000/fundrisers/${data}`).then(() => {
-      this.getPostAPI();
-    });
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND_BASE_URL}/fundrisers/${data}`)
+      .then(() => {
+        this.getPostAPI();
+      });
   };
 
   rejectWithdraw = (data) => {
-    axios.delete(`http://localhost:3000/withdraws/${data}`).then(() => {
-      this.getPostAPI();
-    });
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND_BASE_URL}/withdraws/${data}`)
+      .then(() => {
+        this.getPostAPI();
+      });
   };
 
   componentDidMount() {

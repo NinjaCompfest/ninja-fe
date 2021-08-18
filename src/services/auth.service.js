@@ -1,7 +1,6 @@
 import axios from "axios";
-import config from "../config";
 
-const API_URL = config.host;
+const API_URL = process.env.REACT_APP_BACKEND_BASE_URL;
 
 export const register = async (full_name, username, password, type) =>
   axios.post(API_URL + "/users", {
