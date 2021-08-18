@@ -1,17 +1,17 @@
 import { Component } from "react";
-import Navbar from "./components/Navbar";
-import DonateInfo from "./components/DonateInfo";
-import "./components/TopUpPage.css";
-import "./components/ProfileBox.css"
+import Navbar from "../common/Navbar";
+import "../../stylesTopUpPage.css";
+import "../../styles/ProfileBox.css";
+import WithdrawInfo from "../common/WithdrawInfo";
 
-class DonatePage extends Component {
+class Withdraw extends Component {
   state = {
     value: 0,
     post: [],
     link: "#",
     status: "Logout",
     fullname: "testing",
-    balance: "00000",
+    donateGathered: "00000",
     title: "Butuh Bantuan! Bayi Ojek Online Berjuang di NICU!",
   };
 
@@ -32,15 +32,15 @@ class DonatePage extends Component {
           <div className="container max-w-xl">
             <div className="grid grid-cols-3 gap-4 self-center p-10 max-h-full">
               <div className="col-span-3 text-center text-2xl font-bold">
-                Donate
+                Withdraw
               </div>
               <div className="col-span-3 p-5 px-10">
-                <DonateInfo
+                <WithdrawInfo
                   title={this.state.title}
-                  balance={this.state.balance}
+                  donateGathered={this.state.donateGathered}
                 />
               </div>
-              <div className="col-span-3 px-10">Donate Amount</div>
+              <div className="col-span-3 px-10">Withdraw Amount</div>
               <div className="col-span-3 px-10">
                 <input
                   className="min-w-full bg-gray-300 input-box px-10"
@@ -121,4 +121,4 @@ class DonatePage extends Component {
   }
 }
 
-export default DonatePage;
+export default Withdraw;

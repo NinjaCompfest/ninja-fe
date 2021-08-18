@@ -1,13 +1,5 @@
 import "./App.css";
-import CrateProgram from "./CrateProgram";
-import DonatePage from "./DonatePage";
-import ProgramConfirmationDetail from "./ProgramConfirmationDetail";
-import ProgramDetail from "./ProgramDetail";
-import Withdraw from "./Withdraw";
-import AdminDashboard from "./AdminDashboard";
-import DonatorDashboard from './DonatorDashboard'
-import FundriserDashboard from "./FundriserDashboard";
-import TopUpPage from './TopUpPage'
+import AdminDashboard from "./components/pages/AdminDashboard";
 
 function App() {
   return (
