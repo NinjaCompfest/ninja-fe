@@ -1,12 +1,24 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Register from "./components/pages/Register";
 import AdminDashboard from "./components/pages/AdminDashboard";
 
-function App() {
+const App = () => {
   return (
-    <div className="bg-gray-300 min-h-screen">
-      <AdminDashboard />
+    <div className="App bg-gray-900">
+      <Router>
+        <Switch>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route exact path="/admin/dashboard">
+            <AdminDashboard />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
