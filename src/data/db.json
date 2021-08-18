@@ -112,6 +112,13 @@
       "password": "secret",
       "type": "DONOR",
       "id": "hGmekBg"
+    },
+    {
+      "full_name": "Test",
+      "username": "Test",
+      "password": "secret",
+      "type": "FUNDRAISER",
+      "id": "_jZhzuA"
     }
   ],
   "history": [
