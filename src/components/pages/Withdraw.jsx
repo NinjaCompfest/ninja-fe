@@ -1,8 +1,11 @@
 import { Component } from "react";
 import Navbar from "../common/Navbar";
-import "../../stylesTopUpPage.css";
+import "../../styles/TopUpPage.css";
 import "../../styles/ProfileBox.css";
 import WithdrawInfo from "../common/WithdrawInfo";
+import axios from "axios"
+import { Link } from "react-router-dom";
+
 
 class Withdraw extends Component {
   state = {
@@ -14,6 +17,25 @@ class Withdraw extends Component {
     donateGathered: "00000",
     title: "Butuh Bantuan! Bayi Ojek Online Berjuang di NICU!",
   };
+
+  getPostAPI = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/programs/${this.props.match.params.id}`
+      )
+      .then((result) => {
+        this.setState({
+          id: result.data.id,
+          title: result.data.title,
+          desc: result.data.description,
+          donateGathered: result.data.amountGathered,
+        });
+      });
+  };
+
+  componentDidMount() {
+    this.getPostAPI();
+  }
 
   ammountInput(event) {
     const inputValue = event.target.value;
@@ -102,12 +124,9 @@ class Withdraw extends Component {
               </div>
               <div className="col-span-3 px-10 mt-10">
                 <div className="grid grid-cols-2 gap-8 self-center max-h-full">
-                  <a
-                    href="/"
-                    className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
-                  >
-                    Cancel
-                  </a>
+                <Link to={`/fundriser/dashboard`} className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300">
+                  Cancel
+                </Link>
                   <button className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300">
                     Submit
                   </button>

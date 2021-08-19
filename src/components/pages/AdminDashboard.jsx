@@ -88,7 +88,7 @@ class AdminDashboard extends Component {
           <div className="col-span-4">
             {this.state.programs.map((programs) => {
               return (
-                <Link to={`/programs/${programs.id}`}>
+                <Link to={`/programs/confirmation/${programs.id}`}>
                   <FundrisingBox
                     key={programs.id}
                     title={programs.title}
