@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import NavbarLogout from "../common//NavbarLogout";
+import Navbar from "../common//Navbar";
 import axios from "axios";
 import FundrisingBox from "../common/FundrisingBox";
 import AdminProfileBox from "../common/AdminProfileBox";
 import "../../styles/ProfileBox.css";
 import AdminWithdraw from "../common/AdminWithdraw";
-import Panel from "../common/Panel"
-import Tabs from "../common/Tabs"
-import "../../styles/AdminDashboard.css"
+import Panel from "../common/Panel";
+import Tabs from "../common/Tabs";
+import "../../styles/AdminDashboard.css";
 
 class AdminDashboard extends Component {
   state = {
@@ -71,11 +71,13 @@ class AdminDashboard extends Component {
   render() {
     return (
       <div className="bg-gray-300 min-h-screen main-container">
-        <NavbarLogout status={this.state.status} link={this.state.link} />
+        <Navbar status={this.state.status} link={this.state.link} />
         <div className="mt-5">
           <Tabs>
             <Panel title="Withdraw">
-              <div className="text-2xl font-bold text-left m-5">Withdraw Verification</div>
+              <div className="text-2xl font-bold text-left m-5">
+                Withdraw Verification
+              </div>
               <div className="grid grid-cols-4 gap-4 self-center max-h-full">
                 {this.state.withdraw.map((withdraw) => {
                   return (
@@ -89,7 +91,9 @@ class AdminDashboard extends Component {
               </div>
             </Panel>
             <Panel title="Account">
-              <div className="text-2xl font-bold text-left m-5">Account Verification</div>
+              <div className="text-2xl font-bold text-left m-5">
+                Account Verification
+              </div>
               <div className="grid grid-cols-4 gap-4 self-center max-h-full">
                 {this.state.fundriser.map((fundriser) => {
                   return (
@@ -103,7 +107,9 @@ class AdminDashboard extends Component {
               </div>
             </Panel>
             <Panel title="Programs">
-              <div className="text-2xl font-bold text-left m-5 mb-8">Programs Verification</div>
+              <div className="text-2xl font-bold text-left m-5 mb-8">
+                Programs Verification
+              </div>
               {this.state.programs.map((programs) => {
                 return (
                   <Link to={`/programs/confirmation/${programs.id}`}>

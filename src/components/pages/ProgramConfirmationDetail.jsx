@@ -1,9 +1,8 @@
 import { Component } from "react";
 import "../../styles/ProfileBox.css";
-import NavbarLogout from "../common//NavbarLogout";
+import Navbar from "../common//Navbar";
 import ProgramConfirmationDetailInfo from "../common/ProgramConfirmationDetailInfo";
 import axios from "axios";
-
 
 class ProgramConfirmationDetail extends Component {
   state = {
@@ -38,7 +37,7 @@ class ProgramConfirmationDetail extends Component {
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <NavbarLogout status={this.state.status} link={this.state.link} />
+        <Navbar status={this.state.status} link={this.state.link} />
         <ProgramConfirmationDetailInfo
           title={this.state.title}
           desc={this.state.desc}

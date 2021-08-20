@@ -43,7 +43,7 @@ const Register = () => {
     if (validation === "") {
       register(fullName, username, password, userType)
         .then((res) => {
-          if (res.status === 201) {
+          if (res.status === 200) {
             history.push("/login");
           }
         })
