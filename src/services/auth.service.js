@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "../config";
 
-axios.defaults.baseURL = process.env.REACT_APP_BACKEND_BASE_URL;
+axios.defaults.baseURL = "http://ninja-be.herokuapp.com";
 
 export const register = async (full_name, username, password, type) =>
   axios.post(config.register, {
