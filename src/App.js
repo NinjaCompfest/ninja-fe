@@ -16,6 +16,7 @@ import AdminRoute from "./components/common/AdminRoute";
 import FundraiserRoute from "./components/common/FundraiserRoute";
 import AuthRedirect from "./components/common/AuthRedirect";
 import { getUserToken, getUserRole } from "./services/auth.service";
+import { AuthContext } from "./contexts/AuthContext";
 
 const App = () => {
   const [userToken, setUserToken] = useState(getUserToken() ?? "");
@@ -23,31 +24,34 @@ const App = () => {
 
   return (
     <div className="App bg-gray-900">
-      <Router>
-        <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <AdminRoute
-            exact
-            path="/admin/dashboard"
-            role={userRole}
-            component={AdminDashboard}
-          />
-          <FundraiserRoute
-            exact
-            path="/fundraiser/dashboard"
-            role={userRole}
-            component={FundriserDashboard}
-          />
-          <DonorRoute
-            exact
-            path="/donor/dashboard"
-            role={userRole}
-            component={DonatorDashboard}
-          />
-          <AuthRedirect role={userRole} />
-        </Switch>
-      </Router>
+      <AuthContext.Provider
+        value={{ userToken, setUserToken, userRole, setUserRole }}
+      >
+        <Router>
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <AdminRoute
+              exact
+              path="/admin/dashboard"
+              role={userRole}
+              component={AdminDashboard}
+            />
+            <FundraiserRoute
+              exact
+              path="/fundraiser/dashboard"
+              role={userRole}
+              component={FundriserDashboard}
+            />
+            <DonorRoute
+              exact
+              path="/donor/dashboard"
+              component={DonatorDashboard}
+            />
+            <AuthRedirect role={userRole} />
+          </Switch>
+        </Router>
+      </AuthContext.Provider>
     </div>
   );
 };

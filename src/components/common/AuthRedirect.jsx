@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Redirect } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
-const AuthRedirect = ({ role }) => {
+const AuthRedirect = () => {
+  const { userRole } = useContext(AuthContext);
   let to = "";
-  switch (role) {
+  switch (userRole) {
     case "ADMIN":
       to = "/admin/dashboard";
       break;
