@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "../common/Button";
 import Input from "../common/Input";
 import Navbar from "../common/Navbar";
 import Illustration from "../../assets/images/login.svg";
-import { login } from "../../services/auth.service";
+import { login, saveLogin } from "../../services/auth.service";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Register = () => {
+  const { setUserRole, setUserToken } = useContext(AuthContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [validation, setValidation] = useState("*required");
-  const history = useHistory();
 
   const handleUsernameChange = (val) => {
     setUsername(val);
@@ -33,14 +35,14 @@ const Register = () => {
       login(username, password)
         .then((res) => {
           if (res.status === 200) {
-            localStorage.setItem("token", JSON.stringify(res.data.token));
-            localStorage.setItem("role", JSON.stringify(res.data.user.role));
-            history.push("/home");
+            setUserToken(res.data.token);
+            setUserRole(res.data.user.role);
+            saveLogin(res);
           }
         })
         .catch((err) => setValidation(err.message));
     }
-  }, [validation, username, password, history]);
+  }, [validation, username, password, setUserRole, setUserToken]);
 
   return (
     <>

@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import "./App.css";
 import Register from "./components/pages/Register";
 import AdminDashboard from "./components/pages/AdminDashboard";

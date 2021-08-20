@@ -17,6 +17,11 @@ export const login = async (username, password) =>
     password,
   });
 
+export const saveLogin = (res) => {
+  localStorage.setItem("token", JSON.stringify(res.data.token));
+  localStorage.setItem("role", JSON.stringify(res.data.user.role));
+};
+
 export const getUserToken = () => JSON.parse(localStorage.getItem("token"));
 export const getUserRole = () => JSON.parse(localStorage.getItem("role"));
 
