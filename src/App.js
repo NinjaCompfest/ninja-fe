@@ -34,13 +34,11 @@ const App = () => {
             <AdminRoute
               exact
               path="/admin/dashboard"
-              role={userRole}
               component={AdminDashboard}
             />
             <FundraiserRoute
               exact
               path="/fundraiser/dashboard"
-              role={userRole}
               component={FundriserDashboard}
             />
             <DonorRoute
@@ -48,7 +46,7 @@ const App = () => {
               path="/donor/dashboard"
               component={DonatorDashboard}
             />
-            <AuthRedirect role={userRole} />
+            <AuthRedirect />
           </Switch>
         </Router>
       </AuthContext.Provider>
