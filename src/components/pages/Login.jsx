@@ -83,12 +83,7 @@ const Register = () => {
             className="flex items-center justify-between"
             onClick={handleSubmit}
           >
-            <Button
-              text="Log in"
-              backgroundColor="blue-500"
-              hoverColor="blue-700"
-              textColor="white"
-            />
+            <Button text="Log in" />
           </div>
         </form>
       </div>

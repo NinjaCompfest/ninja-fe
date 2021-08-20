@@ -111,12 +111,7 @@ const Register = () => {
             className="flex items-center justify-between"
             onClick={handleSubmit}
           >
-            <Button
-              text="Sign up"
-              backgroundColor="blue-500"
-              hoverColor="blue-700"
-              textColor="white"
-            />
+            <Button text="Sign up" />
           </div>
         </form>
         <div className="bg-white shadow-md px-8 pt-6 pb-8 mb-4 h-3/4 w-1/3 flex items-center rounded-r-lg">
