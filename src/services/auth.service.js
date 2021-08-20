@@ -1,10 +1,10 @@
 import axios from "axios";
 import config from "../config";
 
-const API_URL = process.env.REACT_APP_BACKEND_BASE_URL;
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_BASE_URL;
 
 export const register = async (full_name, username, password, type) =>
-  axios.post(API_URL + config.register, {
+  axios.post(config.register, {
     full_name,
     username,
     password,
@@ -12,7 +12,7 @@ export const register = async (full_name, username, password, type) =>
   });
 
 export const login = async (username, password) =>
-  axios.post(API_URL + config.login, {
+  axios.post(config.login, {
     username,
     password,
   });
