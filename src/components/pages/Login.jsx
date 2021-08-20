@@ -32,7 +32,9 @@ const Register = () => {
     if (validation === "") {
       login(username, password)
         .then((res) => {
-          if (res.status === 201) {
+          if (res.status === 200) {
+            localStorage.setItem("token", JSON.stringify(res.data.token));
+            localStorage.setItem("role", JSON.stringify(res.data.user.role));
             history.push("/home");
           }
         })
