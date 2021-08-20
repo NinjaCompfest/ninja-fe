@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Navbar from "../common/Navbar";
+import NavbarLogout from "../common//NavbarLogout";
 import ProfileBox from "../common/ProfileBox";
 import BalanceBoxFundriser from "../common/BalanceBoxFundriser";
 import FundrisingBoxFundriser from "../common/FundrisingBoxFundriser";
@@ -45,7 +45,7 @@ class FundriserDashboard extends Component {
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <Navbar status={this.state.status} link={this.state.link} />
+        <NavbarLogout status={this.state.status} link={this.state.link} />
         <div className="grid grid-cols-3 gap-4 self-center m-4 max-h-full">
           <div className="col-span-2">
             <BalanceBoxFundriser balance={this.state.fundriser.balance} />

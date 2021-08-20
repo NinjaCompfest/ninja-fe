@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../common//Navbar";
+import NavbarLogout from "../common//NavbarLogout";
 import axios from "axios";
 import FundrisingBox from "../common/FundrisingBox";
 import AdminProfileBox from "../common/AdminProfileBox";
 import "../../styles/ProfileBox.css";
 import AdminWithdraw from "../common/AdminWithdraw";
+import Panel from "../common/Panel"
+import Tabs from "../common/Tabs"
+import "../../styles/AdminDashboard.css"
 
 class AdminDashboard extends Component {
   state = {
@@ -67,59 +70,53 @@ class AdminDashboard extends Component {
   }
   render() {
     return (
-      <div className="bg-gray-300 min-h-screen">
-        <Navbar status={this.state.status} link={this.state.link} />
-        <div className="grid grid-cols-8 gap-4 self-center m-4 max-h-full">
-          <div className="col-span-4">
-            <p className="text-2xl my-1 mx-6 font-bold text-center">
-              Program List
-            </p>
-          </div>
-          <div className="col-span-2">
-            <p className="text-2xl my-1 mx-6 font-bold text-center">
-              Account List
-            </p>
-          </div>
-          <div className="col-span-2">
-            <p className="text-2xl my-1 mx-6 font-bold text-center">
-              Withdraw List
-            </p>
-          </div>
-          <div className="col-span-4">
-            {this.state.programs.map((programs) => {
-              return (
-                <Link to={`/programs/confirmation/${programs.id}`}>
-                  <FundrisingBox
-                    key={programs.id}
-                    title={programs.title}
-                    desc={programs.description}
-                  />
-                </Link>
-              );
-            })}
-          </div>
-          <div className="col-span-2">
-            {this.state.fundriser.map((fundriser) => {
-              return (
-                <AdminProfileBox
-                  key={fundriser.id}
-                  data={fundriser}
-                  remove={this.rejectAccount}
-                />
-              );
-            })}
-          </div>
-          <div className="col-span-2">
-            {this.state.withdraw.map((withdraw) => {
-              return (
-                <AdminWithdraw
-                  key={withdraw.id}
-                  data={withdraw}
-                  remove={this.rejectWithdraw}
-                />
-              );
-            })}
-          </div>
+      <div className="bg-gray-300 min-h-screen main-container">
+        <NavbarLogout status={this.state.status} link={this.state.link} />
+        <div className="mt-5">
+          <Tabs>
+            <Panel title="Withdraw">
+              <div className="text-2xl font-bold text-left m-5">Withdraw Verification</div>
+              <div className="grid grid-cols-4 gap-4 self-center max-h-full">
+                {this.state.withdraw.map((withdraw) => {
+                  return (
+                    <AdminWithdraw
+                      key={withdraw.id}
+                      data={withdraw}
+                      remove={this.rejectWithdraw}
+                    />
+                  );
+                })}
+              </div>
+            </Panel>
+            <Panel title="Account">
+              <div className="text-2xl font-bold text-left m-5">Account Verification</div>
+              <div className="grid grid-cols-4 gap-4 self-center max-h-full">
+                {this.state.fundriser.map((fundriser) => {
+                  return (
+                    <AdminProfileBox
+                      key={fundriser.id}
+                      data={fundriser}
+                      remove={this.rejectAccount}
+                    />
+                  );
+                })}
+              </div>
+            </Panel>
+            <Panel title="Programs">
+              <div className="text-2xl font-bold text-left m-5 mb-8">Programs Verification</div>
+              {this.state.programs.map((programs) => {
+                return (
+                  <Link to={`/programs/confirmation/${programs.id}`}>
+                    <FundrisingBox
+                      key={programs.id}
+                      title={programs.title}
+                      desc={programs.description}
+                    />
+                  </Link>
+                );
+              })}
+            </Panel>
+          </Tabs>
         </div>
       </div>
     );

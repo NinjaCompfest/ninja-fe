@@ -2,7 +2,7 @@ import { Component } from "react";
 import axios from "axios";
 import "../../styles/ProfileBox.css";
 import ProgramDetailInfo from "../common/ProgramDetailInfo";
-import Navbar from "../common/Navbar";
+import NavbarLogout from "../common//NavbarLogout";
 import { Link } from "react-router-dom";
 
 
@@ -38,7 +38,7 @@ class ProgramDetail extends Component {
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <Navbar status={this.state.status} link={this.state.link} />
+        <NavbarLogout status={this.state.status} link={this.state.link} />
         <div>
           <div className="flex items-center justify-center min-h-screen">
             <div className="container max-w-xl">

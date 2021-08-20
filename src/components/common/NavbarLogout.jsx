@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/Navbar.css";
-const Navbar = () => {
+const NavbarLogout = () => {
   return (
     <div className="bg-white bar">
       <div className="max-w-6xl mx-auto">
@@ -22,7 +22,7 @@ const Navbar = () => {
               to={"/login"}
               className="py-1 px-7 border border-gray-400 rounded hover:bg-black hover:text-white transition duration-300"
             >
-              Login
+              Logout
             </Link>
           </div>
         </div>
@@ -31,4 +31,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarLogout;
