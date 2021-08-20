@@ -17,7 +17,7 @@ const AdminProfileBox = (props) => {
           </div>
         </div>
         <div className="flex justify-end">
-          <a href="#" className=" text-4xl my-3">
+          <a href="/" className=" text-4xl my-3">
             <FaCheckCircle />
           </a>
           <button

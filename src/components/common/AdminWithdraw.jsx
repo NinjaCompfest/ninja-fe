@@ -17,11 +17,11 @@ const AdminWithdraw = (props) => {
           </div>
         </div>
         <div className="flex justify-end">
-          <a href="#" className=" text-4xl my-3">
+          <a href="/" className=" text-4xl my-3">
             <FaCheckCircle />
           </a>
           <a
-            href="#"
+            href="/"
             className="mx-5 text-4xl my-3 remove"
             onClick={() => props.remove(props.data.id)}
           >
