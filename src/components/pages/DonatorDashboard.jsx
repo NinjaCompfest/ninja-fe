@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import BalanceBox from "../common/BalanceBox";
 import FundrisingBox from "../common/FundrisingBox";
-import Navbar from "../common/Navbar";
+import NavbarLogout from "../common//NavbarLogout";
 import ProfileBox from "../common/ProfileBox";
 import axios from "axios";
 import HistoryList from "../common/HistoryList";
@@ -44,7 +44,7 @@ class DonatorDashboard extends Component {
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <Navbar status={this.state.status} link={this.state.link} />
+        <NavbarLogout status={this.state.status} link={this.state.link} />
         <div className="grid grid-cols-3 gap-4 self-center m-4 max-h-full">
           <div className="col-span-2">
             <BalanceBox balance={this.state.user.balance} />
