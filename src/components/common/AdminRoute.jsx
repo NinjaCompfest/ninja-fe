@@ -1,14 +1,19 @@
 import React, { Component, useContext } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import AuthRedirect from "./AuthRedirect";
 
 const AdminRoute = ({ component: Component, ...restOfProps }) => {
-  const { userRole } = useContext(AuthContext);
+  const { userRole, userToken } = useContext(AuthContext);
   return (
     <Route
       {...restOfProps}
       render={(props) =>
-        userRole === "ADMIN" ? <Component {...props} /> : <Redirect to="/" />
+        userToken && userRole === "ADMIN" ? (
+          <Component {...props} />
+        ) : (
+          <AuthRedirect />
+        )
       }
     />
   );

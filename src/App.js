@@ -14,6 +14,7 @@ import Login from "./components/pages/Login";
 import DonorRoute from "./components/common/DonorRoute";
 import AdminRoute from "./components/common/AdminRoute";
 import FundraiserRoute from "./components/common/FundraiserRoute";
+import GuestRoute from "./components/common/GuestRoute";
 import AuthRedirect from "./components/common/AuthRedirect";
 import { getUserToken, getUserRole } from "./services/auth.service";
 import { AuthContext } from "./contexts/AuthContext";
@@ -29,8 +30,8 @@ const App = () => {
       >
         <Router>
           <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
+            <GuestRoute exact path="/login" component={Login} />
+            <GuestRoute exact path="/register" component={Register} />
             <AdminRoute
               exact
               path="/admin/dashboard"
