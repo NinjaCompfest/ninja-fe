@@ -3,11 +3,8 @@ import Navbar from "../common/Navbar";
 import "../../styles/TopUpPage.css";
 import "../../styles/ProfileBox.css";
 import WithdrawInfo from "../common/WithdrawInfo";
-import axios from "axios"
+import axios from "axios";
 import { Link } from "react-router-dom";
-import NavbarLogout from "../common//NavbarLogout";
-
-
 
 class Withdraw extends Component {
   state = {
@@ -51,7 +48,7 @@ class Withdraw extends Component {
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <NavbarLogout status={this.state.status} link={this.state.link} />
+        <Navbar status={this.state.status} link={this.state.link} />
         <div className="flex items-center justify-center min-h-screen">
           <div className="container max-w-xl">
             <div className="grid grid-cols-3 gap-4 self-center p-10 max-h-full">
@@ -126,9 +123,12 @@ class Withdraw extends Component {
               </div>
               <div className="col-span-3 px-10 mt-10">
                 <div className="grid grid-cols-2 gap-8 self-center max-h-full">
-                <Link to={`/fundriser/dashboard`} className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300">
-                  Cancel
-                </Link>
+                  <Link
+                    to={`/fundriser/dashboard`}
+                    className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
+                  >
+                    Cancel
+                  </Link>
                   <button className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300">
                     Submit
                   </button>

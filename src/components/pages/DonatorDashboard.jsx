@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import BalanceBox from "../common/BalanceBox";
 import FundrisingBox from "../common/FundrisingBox";
-import NavbarLogout from "../common//NavbarLogout";
+import Navbar from "../common/Navbar";
 import ProfileBox from "../common/ProfileBox";
 import axios from "axios";
 import HistoryList from "../common/HistoryList";
@@ -23,28 +23,34 @@ class DonatorDashboard extends Component {
 
   // jangan lupa buat API histori, ini pake satu aja.
   componentDidMount() {
-    axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/programs`).then((result) => {
-      this.setState({
-        programs: result.data,
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/programs`)
+      .then((result) => {
+        this.setState({
+          programs: result.data,
+        });
       });
-    });
 
-    axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/history`).then((result) => {
-      this.setState({
-        history: result.data,
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/history`)
+      .then((result) => {
+        this.setState({
+          history: result.data,
+        });
       });
-    });
 
-    axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/users/2`).then((result) => {
-      this.setState({
-        user: result.data,
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/users/2`)
+      .then((result) => {
+        this.setState({
+          user: result.data,
+        });
       });
-    });
   }
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <NavbarLogout status={this.state.status} link={this.state.link} />
+        <Navbar status={this.state.status} link={this.state.link} />
         <div className="grid grid-cols-3 gap-4 self-center m-4 max-h-full">
           <div className="col-span-2">
             <BalanceBox balance={this.state.user.balance} />
@@ -64,12 +70,12 @@ class DonatorDashboard extends Component {
               {this.state.programs.map((programs) => {
                 return (
                   <Link to={`/programs/${programs.id}`}>
-                  <FundrisingBox
-                    key={programs.id}
-                    title={programs.title}
-                    desc={programs.description}
-                  />
-                </Link>
+                    <FundrisingBox
+                      key={programs.id}
+                      title={programs.title}
+                      desc={programs.description}
+                    />
+                  </Link>
                 );
               })}
             </div>

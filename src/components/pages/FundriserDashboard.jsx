@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import NavbarLogout from "../common//NavbarLogout";
+import Navbar from "../common//Navbar";
 import ProfileBox from "../common/ProfileBox";
 import BalanceBoxFundriser from "../common/BalanceBoxFundriser";
 import FundrisingBoxFundriser from "../common/FundrisingBoxFundriser";
 import "../../styles/ProfileBox.css";
 import { Link } from "react-router-dom";
-
 
 class FundriserDashboard extends Component {
   state = {
@@ -45,7 +44,7 @@ class FundriserDashboard extends Component {
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <NavbarLogout status={this.state.status} link={this.state.link} />
+        <Navbar status={this.state.status} link={this.state.link} />
         <div className="grid grid-cols-3 gap-4 self-center m-4 max-h-full">
           <div className="col-span-2">
             <BalanceBoxFundriser balance={this.state.fundriser.balance} />
@@ -61,7 +60,10 @@ class FundriserDashboard extends Component {
           </div>
           <div className="col-span-3 flex justify-between">
             <p className="text-2xl mx-5 font-bold">Program List</p>
-            <Link to={"/new"} className="topup-btn mx-5 px-6 py-1 rounded bg-black text-white border border-black hover:bg-white hover:text-black transition duration-300">
+            <Link
+              to={"/new"}
+              className="topup-btn mx-5 px-6 py-1 rounded bg-black text-white border border-black hover:bg-white hover:text-black transition duration-300"
+            >
               Make New
             </Link>
           </div>
