@@ -5,6 +5,8 @@ import ProfileBox from "../common/ProfileBox";
 import BalanceBoxFundriser from "../common/BalanceBoxFundriser";
 import FundrisingBoxFundriser from "../common/FundrisingBoxFundriser";
 import "../../styles/ProfileBox.css";
+import { Link } from "react-router-dom";
+
 
 class FundriserDashboard extends Component {
   state = {
@@ -18,18 +20,26 @@ class FundriserDashboard extends Component {
     fullname: "fname",
   };
 
-  componentDidMount() {
-    axios.get("http://localhost:3000/programs").then((result) => {
-      this.setState({
-        programs: result.data,
+  getPostAPI = () => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/programs`)
+      .then((result) => {
+        this.setState({
+          programs: result.data,
+        });
       });
-    });
 
-    axios.get("http://localhost:3000/fundrisers/1").then((result) => {
-      this.setState({
-        fundriser: result.data,
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/fundrisers/2`)
+      .then((result) => {
+        this.setState({
+          fundriser: result.data,
+        });
       });
-    });
+  };
+
+  componentDidMount() {
+    this.getPostAPI();
   }
 
   render() {
@@ -51,21 +61,20 @@ class FundriserDashboard extends Component {
           </div>
           <div className="col-span-3 flex justify-between">
             <p className="text-2xl mx-5 font-bold">Program List</p>
-            <a
-              href="/"
-              className="topup-btn mx-5 px-6 py-1 rounded bg-black text-white border border-black hover:bg-white hover:text-black transition duration-300"
-            >
+            <Link to={"/new"} className="topup-btn mx-5 px-6 py-1 rounded bg-black text-white border border-black hover:bg-white hover:text-black transition duration-300">
               Make New
-            </a>
+            </Link>
           </div>
           <div className="col-span-3">
             {this.state.programs.map((programs) => {
               return (
-                <FundrisingBoxFundriser
-                  key={programs.id}
-                  title={programs.title}
-                  desc={programs.description}
-                />
+                <Link to={`/programs/withdraw/${programs.id}`}>
+                  <FundrisingBoxFundriser
+                    key={programs.id}
+                    title={programs.title}
+                    desc={programs.description}
+                  />
+                </Link>
               );
             })}
           </div>

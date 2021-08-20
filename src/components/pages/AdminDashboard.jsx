@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../common//Navbar";
 import axios from "axios";
 import FundrisingBox from "../common/FundrisingBox";
@@ -87,11 +88,13 @@ class AdminDashboard extends Component {
           <div className="col-span-4">
             {this.state.programs.map((programs) => {
               return (
-                <FundrisingBox
-                  key={programs.id}
-                  title={programs.title}
-                  desc={programs.description}
-                />
+                <Link to={`/programs/confirmation/${programs.id}`}>
+                  <FundrisingBox
+                    key={programs.id}
+                    title={programs.title}
+                    desc={programs.description}
+                  />
+                </Link>
               );
             })}
           </div>

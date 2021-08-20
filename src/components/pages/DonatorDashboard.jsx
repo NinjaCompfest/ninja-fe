@@ -6,6 +6,7 @@ import ProfileBox from "../common/ProfileBox";
 import axios from "axios";
 import HistoryList from "../common/HistoryList";
 import "../../styles/ProfileBox.css";
+import { Link } from "react-router-dom";
 
 class DonatorDashboard extends Component {
   state = {
@@ -22,19 +23,19 @@ class DonatorDashboard extends Component {
 
   // jangan lupa buat API histori, ini pake satu aja.
   componentDidMount() {
-    axios.get("http://localhost:3000/programs").then((result) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/programs`).then((result) => {
       this.setState({
         programs: result.data,
       });
     });
 
-    axios.get("http://localhost:3000/history").then((result) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/history`).then((result) => {
       this.setState({
         history: result.data,
       });
     });
 
-    axios.get("http://localhost:3000/users/1").then((result) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/users/2`).then((result) => {
       this.setState({
         user: result.data,
       });
@@ -52,8 +53,8 @@ class DonatorDashboard extends Component {
             <div className="container max-w-full border h-36 items-center">
               <h1 className="text-center title-profile m-2">My Profile</h1>
               <ProfileBox
-                username={this.state.user.uname}
-                fullname={this.state.user.fullname}
+                username={this.state.user.username}
+                fullname={this.state.user.full_name}
               />
             </div>
           </div>
@@ -62,11 +63,13 @@ class DonatorDashboard extends Component {
             <div className="overflow-auto h-screen">
               {this.state.programs.map((programs) => {
                 return (
+                  <Link to={`/programs/${programs.id}`}>
                   <FundrisingBox
                     key={programs.id}
                     title={programs.title}
                     desc={programs.description}
                   />
+                </Link>
                 );
               })}
             </div>
