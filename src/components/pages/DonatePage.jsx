@@ -41,6 +41,7 @@ class DonatePage extends Component {
     const userId = this.context.userId;
     donate(token, this.state.id, this.state.value, userId).then(() => {
       this.getBalance(token);
+      this.props.history.push("/");
     });
   };
 

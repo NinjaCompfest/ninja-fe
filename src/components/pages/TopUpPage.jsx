@@ -38,7 +38,7 @@ class TopUpPage extends Component {
     const token = this.context.userToken;
     const userId = this.context.userId;
     topup(token, this.state.value, userId).then((res) => {
-      console.log(res);
+      this.getUser();
     });
   };
 

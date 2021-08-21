@@ -47,11 +47,11 @@ export const topup = async (token, amount, userId) =>
     }
   );
 
-export const donate = async (token, id, amount, userId) =>
+export const donate = async (token, programId, amount, userId) =>
   axios.put(
     `${config.users}/${userId}/donor`,
     {
-      id,
+      programId,
       amount,
     },
     {

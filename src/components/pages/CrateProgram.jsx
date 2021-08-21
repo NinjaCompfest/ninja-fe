@@ -33,8 +33,8 @@ class CrateProgram extends Component {
       this.state.valueTitle,
       this.state.valueDescription,
       userId
-    ).then((res) => {
-      this.props.history.push("/login");
+    ).then(() => {
+      this.props.history.push("/");
     });
   };
 

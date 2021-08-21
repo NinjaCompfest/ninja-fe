@@ -28,9 +28,8 @@ class DonatorDashboard extends Component {
     const token = this.context.userToken;
     getPastDonation(token).then((res) => {
       this.setState({
-        history: [res.data.history],
+        history: res.data,
       });
-      console.log(res);
     });
     getUserInfo(token).then((res) => {
       this.setState({
@@ -38,13 +37,11 @@ class DonatorDashboard extends Component {
         fullname: res.data.full_name,
         balance: res.data.balance,
       });
-      console.log(res);
     });
     getVerifiedPrograms(token).then((res) => {
       this.setState({
         programs: res.data,
       });
-      console.log(res);
     });
   }
   render() {
@@ -86,12 +83,12 @@ class DonatorDashboard extends Component {
                 Donation History
               </h1>
               <div className="overflow-auto h-80">
-                {this.state.history.map((history) => {
+                {this.state.history.map((history, idx) => {
                   return (
                     <HistoryList
-                      key={history.id}
-                      history={history.title}
-                      amount={history.amount}
+                      key={idx}
+                      title={history.title}
+                      amount={history.donated_amount}
                     />
                   );
                 })}
