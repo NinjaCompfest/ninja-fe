@@ -3,15 +3,16 @@ import Navbar from "../common//Navbar";
 import TopUpAccountInfo from "../common/TopUpAccountInfo";
 import "../../styles/TopUpPage.css";
 import "../../styles/ProfileBox.css";
+import { getUserInfo, topup } from "../../services/user.service";
+import { AuthContext } from "../../contexts/AuthContext";
 
 class TopUpPage extends Component {
+  static contextType = AuthContext;
+
   state = {
+    fullname: "",
     value: 0,
-    post: [],
-    link: "#",
-    status: "Logout",
-    fullname: "testing",
-    balance: "00000",
+    balance: 0,
   };
 
   ammountInput(event) {
@@ -23,10 +24,32 @@ class TopUpPage extends Component {
     this.setState({ value: newValue });
   }
 
+  getUser = () => {
+    const token = this.context.userToken;
+    getUserInfo(token).then((res) => {
+      this.setState({
+        fullname: res.data.full_name,
+        balance: res.data.balance,
+      });
+    });
+  };
+
+  handleSubmit = () => {
+    const token = this.context.userToken;
+    const userId = this.context.userId;
+    topup(token, this.state.value, userId).then((res) => {
+      this.getUser();
+    });
+  };
+
+  componentDidMount() {
+    this.getUser();
+  }
+
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <Navbar status={this.state.status} link={this.state.link} />
+        <Navbar />
         <div className="flex items-center justify-center min-h-screen">
           <div className="container max-w-xl">
             <div className="grid grid-cols-3 gap-4 self-center p-10 max-h-full">
@@ -102,12 +125,15 @@ class TopUpPage extends Component {
               <div className="col-span-3 px-10 mt-10">
                 <div className="grid grid-cols-2 gap-8 self-center max-h-full">
                   <a
-                    href="/"
+                    href={`/`}
                     className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
                   >
                     Cancel
                   </a>
-                  <button className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300">
+                  <button
+                    className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
+                    onClick={this.handleSubmit}
+                  >
                     Submit
                   </button>
                 </div>

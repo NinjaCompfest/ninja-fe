@@ -4,16 +4,21 @@ import DonateInfo from "../common/DonateInfo";
 import "../../styles/TopUpPage.css";
 import "../../styles/ProfileBox.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import {
+  donate,
+  getProgramById,
+  getUserInfo,
+} from "../../services/user.service";
 
 class DonatePage extends Component {
+  static contextType = AuthContext;
+
   state = {
+    id: "",
+    title: "",
     value: 0,
-    post: [],
-    link: "#",
-    status: "Logout",
-    fullname: "testing",
-    balance: "00000",
-    title: "Butuh Bantuan! Bayi Ojek Online Berjuang di NICU!",
+    balance: 0,
   };
 
   ammountInput(event) {
@@ -25,10 +30,37 @@ class DonatePage extends Component {
     this.setState({ value: newValue });
   }
 
+  getBalance(token) {
+    getUserInfo(token).then((res) => {
+      this.setState({ balance: res.data.balance });
+    });
+  }
+
+  handleSubmit = () => {
+    const token = this.context.userToken;
+    const userId = this.context.userId;
+    donate(token, this.state.id, this.state.value, userId).then(() => {
+      this.getBalance(token);
+      this.props.history.push("/");
+    });
+  };
+
+  componentDidMount() {
+    const token = this.context.userToken;
+    const id = this.props.match.params.id;
+    this.getBalance(token);
+    getProgramById(token, id).then((res) => {
+      this.setState({
+        id: res.data._id,
+        title: res.data.title,
+      });
+    });
+  }
+
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <Navbar status={this.state.status} link={this.state.link} />
+        <Navbar />
         <div className="flex items-center justify-center min-h-screen">
           <div className="container max-w-xl">
             <div className="grid grid-cols-3 gap-4 self-center p-10 max-h-full">
@@ -104,12 +136,17 @@ class DonatePage extends Component {
               <div className="col-span-3 px-10 mt-10">
                 <div className="grid grid-cols-2 gap-8 self-center max-h-full">
                   <Link
-                    to={`/donator/dashboard`}
+                    to={(location) => location.pathname.replace("/donate", "")}
                     className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
                   >
                     Cancel
                   </Link>
-                  <button className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300">
+                  <button
+                    className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
+                    onClick={() => {
+                      this.handleSubmit();
+                    }}
+                  >
                     Submit
                   </button>
                 </div>

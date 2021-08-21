@@ -5,10 +5,10 @@ const HistoryList = (props) => {
     <div>
       <div className="profile justify-between flex">
         <div className="m-4">
-          <p>{props.history}</p>
+          <p>{props.title}</p>
         </div>
         <div className="m-4">
-          <p>{props.ammount}</p>
+          <p>{props.amount}</p>
         </div>
       </div>
     </div>
