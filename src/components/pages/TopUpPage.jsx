@@ -36,8 +36,9 @@ class TopUpPage extends Component {
 
   handleSubmit = () => {
     const token = this.context.userToken;
-    topup(token, this.state.value, this.state.id).then(() => {
-      this.getUser();
+    const userId = this.context.userId;
+    topup(token, this.state.value, userId).then((res) => {
+      console.log(res);
     });
   };
 

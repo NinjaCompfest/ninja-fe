@@ -35,10 +35,9 @@ const Register = () => {
       login(username, password)
         .then((res) => {
           if (res.status === 200) {
-            console.log(res);
             setUserToken(res.data.token);
             setUserRole(res.data.user.role);
-            setUserId(res.data._id);
+            setUserId(res.data.user._id);
             saveLogin(res);
           }
         })

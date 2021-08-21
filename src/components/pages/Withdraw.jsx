@@ -5,16 +5,17 @@ import "../../styles/ProfileBox.css";
 import WithdrawInfo from "../common/WithdrawInfo";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import { getProgramById, withdraw } from "../../services/user.service";
 
 class Withdraw extends Component {
+  static contextType = AuthContext;
+
   state = {
+    id: "",
+    title: "",
     value: 0,
-    post: [],
-    link: "#",
-    status: "Logout",
-    fullname: "testing",
-    donateGathered: "00000",
-    title: "Butuh Bantuan! Bayi Ojek Online Berjuang di NICU!",
+    amount: 0,
   };
 
   getPostAPI = () => {
@@ -32,10 +33,6 @@ class Withdraw extends Component {
       });
   };
 
-  componentDidMount() {
-    this.getPostAPI();
-  }
-
   ammountInput(event) {
     const inputValue = event.target.value;
     this.setState({ value: inputValue });
@@ -43,6 +40,27 @@ class Withdraw extends Component {
 
   handelClick(newValue) {
     this.setState({ value: newValue });
+  }
+
+  handleSubmit = () => {
+    const token = this.context.userToken;
+    const userId = this.context.userId;
+    withdraw(token, this.state.id, this.state.value, userId).then(() => {
+      this.props.history.push("/");
+    });
+  };
+
+  componentDidMount() {
+    const token = this.context.userToken;
+    const id = this.props.match.params.id;
+    getProgramById(token, id).then((res) => {
+      console.log(res);
+      this.setState({
+        id: res.data._id,
+        title: res.data.title,
+        amount: res.data.collected_amount,
+      });
+    });
   }
 
   render() {
@@ -58,7 +76,7 @@ class Withdraw extends Component {
               <div className="col-span-3 p-5 px-10">
                 <WithdrawInfo
                   title={this.state.title}
-                  donateGathered={this.state.donateGathered}
+                  donateGathered={this.state.amount}
                 />
               </div>
               <div className="col-span-3 px-10">Withdraw Amount</div>
@@ -129,7 +147,10 @@ class Withdraw extends Component {
                   >
                     Cancel
                   </Link>
-                  <button className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300">
+                  <button
+                    className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
+                    onClick={this.handleSubmit}
+                  >
                     Submit
                   </button>
                 </div>

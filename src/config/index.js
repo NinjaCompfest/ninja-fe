@@ -5,6 +5,7 @@ const url = {
   programs: "/programs",
   users: "/users",
   dashboard: "/dashboard",
+  fundraisers: "/fundraisers",
 };
 
 export default url;

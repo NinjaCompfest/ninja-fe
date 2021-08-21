@@ -38,7 +38,8 @@ class DonatePage extends Component {
 
   handleSubmit = () => {
     const token = this.context.userToken;
-    donate(token, this.state.id, this.state.value).then(() => {
+    const userId = this.context.userId;
+    donate(token, this.state.id, this.state.value, userId).then(() => {
       this.getBalance(token);
     });
   };

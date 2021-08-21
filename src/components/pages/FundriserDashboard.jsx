@@ -7,8 +7,11 @@ import FundrisingBoxFundriser from "../common/FundrisingBoxFundriser";
 import "../../styles/ProfileBox.css";
 import { Link } from "react-router-dom";
 import { getUserInfo, getVerifiedPrograms } from "../../services/user.service";
+import { AuthContext } from "../../contexts/AuthContext";
 
 class FundriserDashboard extends Component {
+  static contextType = AuthContext;
+
   state = {
     programs: [],
     balance: 0,
@@ -63,7 +66,7 @@ class FundriserDashboard extends Component {
               return (
                 <Link
                   key={programs._id}
-                  to={`/programs/withdraw/${programs.id}`}
+                  to={`/programs/withdraw/${programs._id}`}
                 >
                   <FundrisingBoxFundriser
                     key={programs._id}

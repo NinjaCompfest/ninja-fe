@@ -30,6 +30,7 @@ class DonatorDashboard extends Component {
       this.setState({
         history: [res.data.history],
       });
+      console.log(res);
     });
     getUserInfo(token).then((res) => {
       this.setState({
@@ -37,11 +38,13 @@ class DonatorDashboard extends Component {
         fullname: res.data.full_name,
         balance: res.data.balance,
       });
+      console.log(res);
     });
     getVerifiedPrograms(token).then((res) => {
       this.setState({
         programs: res.data,
       });
+      console.log(res);
     });
   }
   render() {

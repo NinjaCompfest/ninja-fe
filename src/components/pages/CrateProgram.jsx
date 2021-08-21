@@ -3,8 +3,12 @@ import Navbar from "../common//Navbar";
 import "../../styles/TopUpPage.css";
 import "../../styles/ProfileBox.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import { createProgram } from "../../services/user.service";
 
 class CrateProgram extends Component {
+  static contextType = AuthContext;
+
   state = {
     valueTitle: "",
     valueDescription: "",
@@ -20,6 +24,19 @@ class CrateProgram extends Component {
     const inputValue = event.target.value;
     this.setState({ valueDescription: inputValue });
   }
+
+  handleSubmit = () => {
+    const token = this.context.userToken;
+    const userId = this.context.userId;
+    createProgram(
+      token,
+      this.state.valueTitle,
+      this.state.valueDescription,
+      userId
+    ).then((res) => {
+      this.props.history.push("/login");
+    });
+  };
 
   render() {
     return (
@@ -59,7 +76,10 @@ class CrateProgram extends Component {
                   >
                     Cancel
                   </Link>
-                  <button className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300">
+                  <button
+                    className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
+                    onClick={this.handleSubmit}
+                  >
                     Make New
                   </button>
                 </div>
