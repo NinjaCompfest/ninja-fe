@@ -7,7 +7,7 @@ const ProgramDetailInfo = (props) => {
         <p>{props.title}</p>
       </div>
       <div className="col-span-3 px-10 py-2">
-        <p>by {props.fullname}</p>
+        <p>Donation gathered: Rp{props.amountGathered}</p>
       </div>
       <div className="col-span-3 p-5 px-10">
         <p>{props.desc}</p>

@@ -8,12 +8,8 @@ const AdminWithdraw = (props) => {
       <div className="container max-w-full border h-36 items-center">
         <div className="profile justify-between flex mx-5">
           <div className="profile-info">
-            <p className="my-3">Fullname :</p>
-            <p className="">Amount :</p>
-          </div>
-          <div className="profile-content">
-            <p className="my-3">{props.data.fullname}</p>
-            <p>{props.data.amount}</p>
+            <p className="my-3">Event : {props.data.name}</p>
+            <p className="">Amount : {props.data.amount}</p>
           </div>
         </div>
         <div className="flex justify-end">

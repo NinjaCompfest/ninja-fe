@@ -37,7 +37,7 @@ class ProgramConfirmationDetail extends Component {
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <Navbar status={this.state.status} link={this.state.link} />
+        <Navbar />
         <ProgramConfirmationDetailInfo
           title={this.state.title}
           desc={this.state.desc}
