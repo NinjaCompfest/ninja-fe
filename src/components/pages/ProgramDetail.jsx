@@ -4,47 +4,42 @@ import "../../styles/ProfileBox.css";
 import ProgramDetailInfo from "../common/ProgramDetailInfo";
 import Navbar from "../common//Navbar";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import { getProgramById } from "../../services/user.service";
 
 class ProgramDetail extends Component {
-  state = {
-    value: 0,
-    post: [],
-    link: "#",
-    status: "Logout",
-    fullname: "fullname",
-    balance: "00000",
-  };
+  static contextType = AuthContext;
 
-  getPostAPI = () => {
-    axios
-      .get(
-        `${process.env.REACT_APP_BACKEND_BASE_URL}/programs/${this.props.match.params.id}`
-      )
-      .then((result) => {
-        this.setState({
-          id: result.data.id,
-          title: result.data.title,
-          desc: result.data.description,
-          fullname: result.data.amountGathered,
-        });
-      });
+  state = {
+    id: "",
+    title: "",
+    desc: "",
+    amountGathered: "",
   };
 
   componentDidMount() {
-    this.getPostAPI();
+    const token = this.context.userToken;
+    getProgramById(token, this.props.match.params.id).then((res) => {
+      this.setState({
+        id: res.data.id,
+        title: res.data.title,
+        desc: res.data.description,
+        amountGathered: res.data.collected_amount,
+      });
+    });
   }
 
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <Navbar status={this.state.status} link={this.state.link} />
+        <Navbar />
         <div>
           <div className="flex items-center justify-center min-h-screen">
             <div className="container max-w-xl">
               <ProgramDetailInfo
                 title={this.state.title}
                 desc={this.state.desc}
-                fullname={this.state.fullname}
+                amountGathered={this.state.amountGathered}
               />
               <div className=" grid grid-cols-3 gap-4 self-center px-10 max-h-full">
                 <div className="col-span-3 px-10 mb-10">

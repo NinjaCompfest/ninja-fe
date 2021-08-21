@@ -15,6 +15,7 @@ import DonorRoute from "./components/common/DonorRoute";
 import AdminRoute from "./components/common/AdminRoute";
 import FundraiserRoute from "./components/common/FundraiserRoute";
 import GuestRoute from "./components/common/GuestRoute";
+import AuthRoute from "./components/common/AuthRoute";
 import AuthRedirect from "./components/common/AuthRedirect";
 import { getUserToken, getUserRole } from "./services/auth.service";
 import { AuthContext } from "./contexts/AuthContext";
@@ -53,11 +54,7 @@ const App = () => {
               path="/programs/withdraw/:id"
               component={Withdraw}
             />
-            <FundraiserRoute
-              exact
-              path="/programs/:id"
-              component={ProgramDetail}
-            />
+            <AuthRoute exact path="/programs/:id" component={ProgramDetail} />
             <DonorRoute
               exact
               path="/donor/dashboard"
