@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../common//Navbar";
-import axios from "axios";
 import FundrisingBox from "../common/FundrisingBox";
 import AdminProfileBox from "../common/AdminProfileBox";
 import "../../styles/ProfileBox.css";
