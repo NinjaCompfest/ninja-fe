@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../common//Navbar";
-import FundrisingBox from "../common/FundrisingBox";
 import AdminProfileBox from "../common/AdminProfileBox";
 import "../../styles/ProfileBox.css";
 import AdminWithdraw from "../common/AdminWithdraw";
@@ -10,6 +9,7 @@ import Tabs from "../common/Tabs";
 import "../../styles/AdminDashboard.css";
 import { AuthContext } from "../../contexts/AuthContext";
 import { getNotifications } from "../../services/user.service";
+import FundrisingBoxVerification from "../common/FundrisingBoxVerification";
 
 class AdminDashboard extends Component {
   static contextType = AuthContext;
@@ -49,7 +49,12 @@ class AdminDashboard extends Component {
                 {this.state.withdrawal &&
                   this.state.withdrawal.map((withdrawal) => {
                     return (
-                      <AdminWithdraw key={withdrawal.id} data={withdrawal} />
+                      <AdminWithdraw
+                        key={withdrawal._id}
+                        data={withdrawal}
+                        notificationId={withdrawal._id}
+                        type={`WITHDRAWAL`}
+                      />
                     );
                   })}
               </div>
@@ -63,9 +68,10 @@ class AdminDashboard extends Component {
                   this.state.fundraise.map((fundraise) => {
                     return (
                       <AdminProfileBox
-                        key={fundraise.id}
+                        key={fundraise._id}
                         data={fundraise}
-                        remove={this.rejectAccount}
+                        notificationId={fundraise._id}
+                        type={`FUNDRAISE`}
                       />
                     );
                   })}
@@ -78,11 +84,14 @@ class AdminDashboard extends Component {
               {this.state.program &&
                 this.state.program.map((program) => {
                   return (
-                    <Link to={`/programs/confirmation/${program.id}`}>
-                      <FundrisingBox
-                        key={program.id}
-                        title={program.title}
-                        desc={program.description}
+                    <Link
+                      to={`/programs/confirmation/${program.program_id}?${program._id}`}
+                    >
+                      <FundrisingBoxVerification
+                        key={program._id}
+                        title={program.program_name}
+                        name={program.fundraiser_name}
+                        type={`PROGRAMS`}
                       />
                     </Link>
                   );

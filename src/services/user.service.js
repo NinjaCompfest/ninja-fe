@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "../config";
 
-axios.defaults.baseURL = "https://672d-175-158-53-175.ngrok.io";
+axios.defaults.baseURL = "https://ninja-be.herokuapp.com";
 
 const headers = (token) => {
   return {
@@ -84,11 +84,12 @@ export const putNotifications = async (
   token,
   userId,
   notificationId,
-  isVerified
+  type,
+  isAccepted
 ) =>
-  axios.get(
+  axios.put(
     `${config.admins}/${userId}${config.notifications}/${notificationId}`,
-    { isVerified },
+    { type, isAccepted },
     {
       headers: headers(token),
     }
