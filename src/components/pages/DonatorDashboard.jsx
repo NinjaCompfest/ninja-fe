@@ -86,15 +86,16 @@ class DonatorDashboard extends Component {
                 Donation History
               </h1>
               <div className="overflow-auto h-80">
-                {this.state.history.map((history) => {
-                  return (
-                    <HistoryList
-                      key={history.id}
-                      history={history.title}
-                      ammount={history.id}
-                    />
-                  );
-                })}
+                {this.state.history &&
+                  this.state.history.map((history, idx) => {
+                    return (
+                      <HistoryList
+                        key={idx}
+                        title={history.title}
+                        amount={history.donated_amount}
+                      />
+                    );
+                  })}
               </div>
             </div>
           </div>
