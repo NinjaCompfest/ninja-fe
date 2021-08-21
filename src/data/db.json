@@ -63,13 +63,6 @@
   ],
   "fundrisers": [
     {
-      "id": 2,
-      "uname": "Antonette",
-      "fullname": "Ervin Howell",
-      "balance": 200000,
-      "verification": true
-    },
-    {
       "id": 3,
       "uname": "Samantha",
       "fullname": "Clementine Bauch",

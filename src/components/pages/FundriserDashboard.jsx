@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import Navbar from "../common//Navbar";
 import ProfileBox from "../common/ProfileBox";
 import BalanceBoxFundriser from "../common/BalanceBoxFundriser";
@@ -29,6 +28,7 @@ class FundriserDashboard extends Component {
       });
     });
     getVerifiedPrograms(token).then((res) => {
+      console.log(res.data);
       this.setState({
         programs: res.data,
       });
@@ -62,20 +62,21 @@ class FundriserDashboard extends Component {
             </Link>
           </div>
           <div className="col-span-3">
-            {this.state.programs.map((programs) => {
-              return (
-                <Link
-                  key={programs._id}
-                  to={`/programs/withdraw/${programs._id}`}
-                >
-                  <FundrisingBoxFundriser
+            {this.state.programs &&
+              this.state.programs.map((programs) => {
+                return (
+                  <Link
                     key={programs._id}
-                    title={programs.title}
-                    desc={programs.description}
-                  />
-                </Link>
-              );
-            })}
+                    to={`/programs/withdraw/${programs._id}`}
+                  >
+                    <FundrisingBoxFundriser
+                      key={programs._id}
+                      title={programs.title}
+                      desc={programs.description}
+                    />
+                  </Link>
+                );
+              })}
           </div>
         </div>
       </div>

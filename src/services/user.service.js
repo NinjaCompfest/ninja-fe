@@ -74,3 +74,22 @@ export const withdraw = async (token, id, amount, userId) =>
       headers: headers(token),
     }
   );
+
+export const getNotifications = async (token, userId) =>
+  axios.get(`${config.admins}/${userId}${config.notifications}`, {
+    headers: headers(token),
+  });
+
+export const putNotifications = async (
+  token,
+  userId,
+  notificationId,
+  isVerified
+) =>
+  axios.get(
+    `${config.admins}/${userId}${config.notifications}/${notificationId}`,
+    { isVerified },
+    {
+      headers: headers(token),
+    }
+  );

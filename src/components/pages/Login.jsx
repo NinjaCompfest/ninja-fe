@@ -41,7 +41,7 @@ const Register = () => {
             saveLogin(res);
           }
         })
-        .catch((err) => setValidation(err.message));
+        .catch((err) => setValidation(err.response.data.message));
     }
   }, [validation, username, password, setUserRole, setUserToken, setUserId]);
 

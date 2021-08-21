@@ -41,7 +41,7 @@ class CrateProgram extends Component {
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <Navbar status={this.state.status} link={this.state.link} />
+        <Navbar />
         <div className="flex items-center justify-center min-h-screen">
           <div className="container max-w-xl">
             <div className="grid grid-cols-3 gap-4 self-center p-10 max-h-full">

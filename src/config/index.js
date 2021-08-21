@@ -6,6 +6,8 @@ const url = {
   users: "/users",
   dashboard: "/dashboard",
   fundraisers: "/fundraisers",
+  admins: "/admins",
+  notifications: "/notifications",
 };
 
 export default url;

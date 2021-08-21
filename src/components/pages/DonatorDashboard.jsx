@@ -47,7 +47,7 @@ class DonatorDashboard extends Component {
   render() {
     return (
       <div className="bg-gray-300 min-h-screen">
-        <Navbar status={this.state.status} link={this.state.link} />
+        <Navbar />
         <div className="grid grid-cols-3 gap-4 self-center m-4 max-h-full">
           <div className="col-span-2">
             <BalanceBox balance={this.state.balance} />
