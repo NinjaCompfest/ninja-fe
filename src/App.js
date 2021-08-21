@@ -11,6 +11,7 @@ import ProgramConfirmationDetail from "./components/pages/ProgramConfirmationDet
 import DonatePage from "./components/pages/DonatePage";
 import Withdraw from "./components/pages/Withdraw";
 import CrateProgram from "./components/pages/CrateProgram";
+import TopUpPage from "./components/pages/TopUpPage";
 import DonorRoute from "./components/common/DonorRoute";
 import AdminRoute from "./components/common/AdminRoute";
 import FundraiserRoute from "./components/common/FundraiserRoute";
@@ -54,12 +55,13 @@ const App = () => {
               path="/programs/withdraw/:id"
               component={Withdraw}
             />
-            <AuthRoute exact path="/programs/:id" component={ProgramDetail} />
             <DonorRoute
               exact
               path="/donor/dashboard"
               component={DonatorDashboard}
             />
+            <AuthRoute exact path="/user/topup" component={TopUpPage} />
+            <AuthRoute exact path="/programs/:id" component={ProgramDetail} />
             <AuthRoute
               exact
               path="/programs/:id/donate"

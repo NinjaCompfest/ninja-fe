@@ -3,15 +3,16 @@ import Navbar from "../common//Navbar";
 import TopUpAccountInfo from "../common/TopUpAccountInfo";
 import "../../styles/TopUpPage.css";
 import "../../styles/ProfileBox.css";
+import { getUserInfo, topup } from "../../services/user.service";
+import { AuthContext } from "../../contexts/AuthContext";
 
 class TopUpPage extends Component {
+  static contextType = AuthContext;
+
   state = {
+    fullname: "",
     value: 0,
-    post: [],
-    link: "#",
-    status: "Logout",
-    fullname: "testing",
-    balance: "00000",
+    balance: 0,
   };
 
   ammountInput(event) {
@@ -21,6 +22,27 @@ class TopUpPage extends Component {
 
   handelClick(newValue) {
     this.setState({ value: newValue });
+  }
+
+  getUser = () => {
+    const token = this.context.userToken;
+    getUserInfo(token).then((res) => {
+      this.setState({
+        fullname: res.data.full_name,
+        balance: res.data.balance,
+      });
+    });
+  };
+
+  handleSubmit = () => {
+    const token = this.context.userToken;
+    topup(token, this.state.value).then(() => {
+      this.getUser();
+    });
+  };
+
+  componentDidMount() {
+    this.getUser();
   }
 
   render() {
@@ -102,12 +124,15 @@ class TopUpPage extends Component {
               <div className="col-span-3 px-10 mt-10">
                 <div className="grid grid-cols-2 gap-8 self-center max-h-full">
                   <a
-                    href="/"
+                    href={`/`}
                     className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
                   >
                     Cancel
                   </a>
-                  <button className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300">
+                  <button
+                    className="border border-black text-xl rounded-xl py-1 text-center bg-black text-white hover:bg-white hover:text-black transition duration-300"
+                    onClick={this.handleSubmit}
+                  >
                     Submit
                   </button>
                 </div>

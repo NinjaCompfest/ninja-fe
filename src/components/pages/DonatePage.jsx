@@ -37,13 +37,12 @@ class DonatePage extends Component {
     });
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     const token = this.context.userToken;
-    const id = this.props.match.params.id;
-    donate(token, id, this.state.value).then(() => {
+    donate(token, this.state.id, this.state.value).then(() => {
       this.getBalance(token);
     });
-  }
+  };
 
   componentDidMount() {
     const token = this.context.userToken;
