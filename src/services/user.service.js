@@ -22,9 +22,9 @@ export const getVerifiedPrograms = async (token) =>
     headers: headers(token),
   });
 
-export const topup = async (token, amount) =>
+export const topup = async (token, amount, userId) =>
   axios.post(
-    `${config.users}/topup`,
+    `${config.users}/${userId}/topup`,
     {
       amount,
     },

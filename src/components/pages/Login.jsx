@@ -8,7 +8,7 @@ import { login, saveLogin } from "../../services/auth.service";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Register = () => {
-  const { setUserRole, setUserToken } = useContext(AuthContext);
+  const { setUserRole, setUserToken, setUserId } = useContext(AuthContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -35,14 +35,16 @@ const Register = () => {
       login(username, password)
         .then((res) => {
           if (res.status === 200) {
+            console.log(res);
             setUserToken(res.data.token);
             setUserRole(res.data.user.role);
+            setUserId(res.data._id);
             saveLogin(res);
           }
         })
         .catch((err) => setValidation(err.message));
     }
-  }, [validation, username, password, setUserRole, setUserToken]);
+  }, [validation, username, password, setUserRole, setUserToken, setUserId]);
 
   return (
     <>
