@@ -3,6 +3,7 @@ const url = {
   login: "/login",
   register: "/register",
   programs: "/programs",
+  users: "/users",
 };
 
 export default url;

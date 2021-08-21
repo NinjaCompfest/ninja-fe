@@ -21,7 +21,7 @@ class ProgramDetail extends Component {
     const token = this.context.userToken;
     getProgramById(token, this.props.match.params.id).then((res) => {
       this.setState({
-        id: res.data.id,
+        id: res.data._id,
         title: res.data.title,
         desc: res.data.description,
         amountGathered: res.data.collected_amount,

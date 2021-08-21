@@ -60,7 +60,7 @@ const App = () => {
               path="/donor/dashboard"
               component={DonatorDashboard}
             />
-            <DonorRoute
+            <AuthRoute
               exact
               path="/programs/:id/donate"
               component={DonatePage}
