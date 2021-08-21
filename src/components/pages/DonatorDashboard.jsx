@@ -3,49 +3,46 @@ import BalanceBox from "../common/BalanceBox";
 import FundrisingBox from "../common/FundrisingBox";
 import Navbar from "../common/Navbar";
 import ProfileBox from "../common/ProfileBox";
-import axios from "axios";
 import HistoryList from "../common/HistoryList";
 import "../../styles/ProfileBox.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import {
+  getPastDonation,
+  getUserInfo,
+  getVerifiedPrograms,
+} from "../../services/user.service";
 
 class DonatorDashboard extends Component {
+  static contextType = AuthContext;
+
   state = {
-    post: [],
-    user: [],
     programs: [],
     history: [],
-    link: "#",
-    status: "Logout",
-    balance: "props",
-    username: "uname",
-    fullname: "fname",
+    balance: 0,
+    username: "",
+    fullname: "",
   };
 
-  // jangan lupa buat API histori, ini pake satu aja.
   componentDidMount() {
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/programs`)
-      .then((result) => {
-        this.setState({
-          programs: result.data,
-        });
+    const token = this.context.userToken;
+    getPastDonation(token).then((res) => {
+      this.setState({
+        history: [res.data.history],
       });
-
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/history`)
-      .then((result) => {
-        this.setState({
-          history: result.data,
-        });
+    });
+    getUserInfo(token).then((res) => {
+      this.setState({
+        username: res.data.username,
+        fullname: res.data.full_name,
+        balance: res.data.balance,
       });
-
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_BASE_URL}/users/2`)
-      .then((result) => {
-        this.setState({
-          user: result.data,
-        });
+    });
+    getVerifiedPrograms(token).then((res) => {
+      this.setState({
+        programs: res.data,
       });
+    });
   }
   render() {
     return (
@@ -53,14 +50,14 @@ class DonatorDashboard extends Component {
         <Navbar status={this.state.status} link={this.state.link} />
         <div className="grid grid-cols-3 gap-4 self-center m-4 max-h-full">
           <div className="col-span-2">
-            <BalanceBox balance={this.state.user.balance} />
+            <BalanceBox balance={this.state.balance} />
           </div>
           <div className="">
             <div className="container max-w-full border h-36 items-center">
               <h1 className="text-center title-profile m-2">My Profile</h1>
               <ProfileBox
-                username={this.state.user.username}
-                fullname={this.state.user.full_name}
+                username={this.state.username}
+                fullname={this.state.fullname}
               />
             </div>
           </div>
@@ -69,11 +66,11 @@ class DonatorDashboard extends Component {
             <div className="overflow-auto h-screen">
               {this.state.programs.map((programs) => {
                 return (
-                  <Link to={`/programs/${programs.id}`}>
+                  <Link key={programs._id} to={`/programs/${programs._id}`}>
                     <FundrisingBox
-                      key={programs.id}
+                      key={programs._id}
                       title={programs.title}
-                      desc={programs.description}
+                      amount={programs.collected_amount}
                     />
                   </Link>
                 );
@@ -91,7 +88,7 @@ class DonatorDashboard extends Component {
                     <HistoryList
                       key={history.id}
                       history={history.title}
-                      ammount={history.id}
+                      amount={history.amount}
                     />
                   );
                 })}

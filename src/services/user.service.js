@@ -12,6 +12,16 @@ export const getUserInfo = async (token) =>
     headers: headers(token),
   });
 
+export const getPastDonation = async (token) =>
+  axios.get(`${config.dashboard}`, {
+    headers: headers(token),
+  });
+
+export const getVerifiedPrograms = async (token) =>
+  axios.get(`${config.programs}`, {
+    headers: headers(token),
+  });
+
 export const topup = async (token, amount) =>
   axios.post(
     `${config.users}/topup`,

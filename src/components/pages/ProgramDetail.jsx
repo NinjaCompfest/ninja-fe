@@ -1,5 +1,4 @@
 import { Component } from "react";
-import axios from "axios";
 import "../../styles/ProfileBox.css";
 import ProgramDetailInfo from "../common/ProgramDetailInfo";
 import Navbar from "../common//Navbar";

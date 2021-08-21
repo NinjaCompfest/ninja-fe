@@ -8,7 +8,7 @@ const HistoryList = (props) => {
           <p>{props.history}</p>
         </div>
         <div className="m-4">
-          <p>{props.ammount}</p>
+          <p>{props.amount}</p>
         </div>
       </div>
     </div>

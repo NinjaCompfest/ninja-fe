@@ -4,6 +4,7 @@ const url = {
   register: "/register",
   programs: "/programs",
   users: "/users",
+  dashboard: "/dashboard",
 };
 
 export default url;
